@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f56fb2 0%, #f541aa 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .heart-animation {
+            font-size: 60px;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            25% {
+                transform: scale(1.3);
+            }
+            50% {
+                transform: scale(1);
+            }
+        }
+
+        h1 {
+            color: #e63946;
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            color: #a4161a;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e63946;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: 'Arial', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #764ba2;
+            box-shadow: 0 0 10px rgba(230, 57, 70, 0.3);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #e63946 0%, #a4161a 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            width: 100%;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(230, 57, 70, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .message-display {
+            background: #ffe5e5;
+            border-left: 4px solid #e63946;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .message-display.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message-display h3 {
+            color: #e63946;
+            margin-bottom: 10px;
+        }
+
+        .message-display p {
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .floating-hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            animation: float 6s infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes float {
+            0% {
+                bottom: -50px;
+                opacity: 1;
+            }
+            100% {
+                bottom: 100vh;
+                opacity: 0;
+            }
+        }
+
+        .heart:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 8s; }
+        .heart:nth-child(2) { left: 20%; animation-delay: 2s; animation-duration: 10s; }
+        .heart:nth-child(3) { left: 30%; animation-delay: 4s; animation-duration: 7s; }
+        .heart:nth-child(4) { left: 40%; animation-delay: 1s; animation-duration: 9s; }
+        .heart:nth-child(5) { left: 50%; animation-delay: 3s; animation-duration: 8s; }
+        .heart:nth-child(6) { left: 60%; animation-delay: 0s; animation-duration: 10s; }
+        .heart:nth-child(7) { left: 70%; animation-delay: 2s; animation-duration: 7s; }
+        .heart:nth-child(8) { left: 80%; animation-delay: 1s; animation-duration: 9s; }
+        .heart:nth-child(9) { left: 90%; animation-delay: 4s; animation-duration: 8s; }
+
+        .couples {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid #e63946;
+        }
+
+        .couples h3 {
+            color: #e63946;
+            margin-bottom: 20px;
+        }
+
+        .couple-item {
+            background: linear-gradient(135deg, #fff5e1 0%, #ffe5e5 100%);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border-left: 3px solid #e63946;
+        }
+
+        .couple-item strong {
+            color: #764ba2;
+        }
+
+        .couple-item p {
+            color: #666;
+            font-style: italic;
+            margin-top: 8px;
+        }
+
+        .proposal-section {
+            background: linear-gradient(135deg, #ffe5e5 0%, #fff5e1 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border: 2px solid #e63946;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            justify-content: center;
+        }
+
+        .yes-btn {
+            background: linear-gradient(135deg, #e63946 0%, #a4161a 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            flex: 1;
+            max-width: 200px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .yes-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(230, 57, 70, 0.5);
+        }
+
+        .no-btn {
+            background: #ccc;
+            color: #666;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            flex: 1;
+            max-width: 200px;
+            transition: all 0.3s ease;
+        }
+
+        .no-btn:hover {
+            background: #bbb;
+        }
+
+        .acceptance-message {
+            background: linear-gradient(135deg, #c1e1ec 0%, #fff5e1 100%);
+            border: 2px solid #667eea;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 20px;
+            animation: slideIn 0.5s ease;
+        }
+
+        .acceptance-message h3 {
+            color: #667eea;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .acceptance-message p {
+            color: #333;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts">
+        <div class="heart">❤️</div>
+        <div class="heart">💕</div>
+        <div class="heart">❤️</div>
+        <div class="heart">💕</div>
+        <div class="heart">❤️</div>
+        <div class="heart">💕</div>
+        <div class="heart">❤️</div>
+        <div class="heart">💕</div>
+        <div class="heart">❤️</div>
+    </div>
+
+    <div class="container">
+        <div class="heart-animation">💕</div>
+        <h1>Happy Valentine's Day</h1>
+
+        <!-- Proposal Section -->
+        <div class="proposal-section">
+            <h2 style="color: #e63946; font-size: 2em; margin: 20px 0;">Will you be my Valentine? 💕</h2>
+            <div class="button-group">
+                <button class="yes-btn" onclick="acceptValentine()">Yes! 💕</button>
+                <button class="no-btn" id="noBtn" onclick="handleNoClick(event)">No</button>
+            </div>
+            <div id="acceptMessage" class="acceptance-message" style="display: none;">
+                <h3>🎉 You just made me the happiest person! 🎉</h3>
+                <p>I can't wait to celebrate Valentine's Day with you! 💌</p>
+            </div>
+        </div>
+
+        <form method="POST" id="valentineForm" style="margin-top: 40px; padding-top: 30px; border-top: 2px solid #e63946;">
+            <div class="form-group" id="messageBox" style="display: none;">
+                <label for="message">My Message To You:</label>
+                <textarea id="message" name="message" style="text-align: center; font-size: 1.1em; color: #e63946; font-weight: bold;" readonly>Hi Loveee! Happy Valentines Day. First, I want to say thank you for making me feel loved, kahit na minsan is naiinis ka sa'kin dahil sa mga bagay-bagay. Salamat sa pag intindi and 'yon lang hindi ko na papahabain pa hahaha, u know naman na I love u so muchhh. Be safe and takecare palagi hehe. I love you, Anggee!!!</textarea>
+            </div>
+        </form>
+
+        <?php ?>
+    </div>
+
+    <script>
+        function acceptValentine() {
+            const acceptMessage = document.getElementById('acceptMessage');
+            const messageBox = document.getElementById('messageBox');
+            acceptMessage.style.display = 'block';
+            messageBox.style.display = 'block';
+        }
+
+        function handleNoClick(event) {
+            event.preventDefault();
+            const noBtn = document.getElementById('noBtn');
+            
+            // Move the button away from the cursor
+            const randomX = (Math.random() - 0.5) * 200;
+            const randomY = (Math.random() - 0.5) * 200;
+            
+            noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+            
+            // Show a playful message
+            if (!document.getElementById('playfulMessage')) {
+                const message = document.createElement('div');
+                message.id = 'playfulMessage';
+                message.style.marginTop = '15px';
+                message.style.color = '#e63946';
+                message.style.fontSize = '1.1em';
+                message.style.fontWeight = 'bold';
+                message.textContent = '😊 You can\'t say no! Try the Yes button! 💕';
+                noBtn.parentElement.parentElement.appendChild(message);
+            }
+        }
+    </script>
+</body>
+</html>
